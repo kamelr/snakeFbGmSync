@@ -95,6 +95,7 @@ public class FacebookClientGUI {
 				try {
 					ContactsService myService = new ContactsService("ch.snakedj.facebook");
 					GmailClient gmailClient = new GmailClient();
+					gmailClient.setUsername(txtUsernameGmail.getText());
 					try {
 						myService.setUserCredentials(txtUsernameGmail.getText(), txtPasswordGmail.getText());
 						gmailClient.loadAllContacts(myService);

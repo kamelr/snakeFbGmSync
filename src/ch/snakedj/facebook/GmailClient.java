@@ -13,7 +13,8 @@ import com.google.gdata.util.ServiceException;
 public class GmailClient {
 
 		
-	HashMap<String, ContactEntry> contactsByName;
+	private HashMap<String, ContactEntry> contactsByName;
+	private String username;
 	
 	public GmailClient()
 	{
@@ -23,7 +24,7 @@ public class GmailClient {
 	public void loadAllContacts(ContactsService myService)
 			throws ServiceException, IOException {
 		URL feedUrl = new URL(
-				"http://www.google.com/m8/feeds/contacts/corsin.capol@gmail.com/full");
+				"http://www.google.com/m8/feeds/contacts/"+getUsername()+"/full");
 		Query myQuery = new Query(feedUrl);
 		  myQuery.setMaxResults(500);
 
@@ -50,6 +51,14 @@ public class GmailClient {
 	public ContactEntry getContact(String name)
 	{
 		return contactsByName.get(name);
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }
